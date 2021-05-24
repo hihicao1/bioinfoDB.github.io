@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+<head lang="en">
+<meta charset="utf-8">
+<title>Bioinfo-db Search 0.0</title>
+<link href="css/bootstrap-4.0.0.css" rel="stylesheet" type="text/css">
+<style>
+	img{border:1px solid black;}
+    img:hover{border:3px solid red}
+	.search { width: 60%; margin: 12px auto; display: flex;}
+    .search input{float:inherit;flex: 2;height: 50px; outline: none; border: 1px solid red;box-sizing: border-box; padding-left: 5px;｝
+</style> <!--全局风格-->
+<style type="text/css">
+	.show{display:contents;}
+	.hide{display:none;}
+	#card-ab{width:650px;height:auto;float:left;}
+    #cardtab button{display: inline-block;font-weight: 400;text-align: center; white-space: nowrap; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; border: 1px solid transparent; padding: 0.375rem 0.75rem; font-size: 1rem; line-height: 1.5; border-radius: 0.25rem; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; color: #fff;background-color: #007bff; border-color: #007bff}
+	</style> <!--选项卡切换风格模块-->
+<script type="text/javascript">
+	function search(prefix,postfix){
+	var url= prefix + document.getElementById("textinput").value + postfix
+	window.open(url)}
+	function openurl(url){
+	window.open(url)
+	}
+	function pdbdownload(){
+	var inputids = document.getElementById("textinput").value
+	var pdbids = inputids.split(" ")
+	for (i = 0; i < pdbids.length; i++){
+		var dlurl="http://files.rcsb.org/batch/"+pdbids[i]+".pdb"
+		window.open(dlurl)}}
+	function jump(postion){
+		var pp = "#"+postion
+		window.location.hash=pp
+	}
+</script> <!--核心功能模块-->
+<script type="text/javascript">
+	function CF(){
+		document.body.style.backgroundColor="#00FF7F"
+		document.getElementById('header').style.backgroundImage="url(./fig/fig2.png)"
+	}
+	function NC(){
+		document.body.style.backgroundColor="#FFFFFF"
+		document.getElementById('header').style.backgroundImage="url(./fig/fig3.png)"
+	}
+</script> <!--风格切换-->
+<script type="text/javascript">
+	function loadcard(id1){
+		if(id1.className==="show"){
+			id1.className="hide"
+		}
+		else{
+			id1.className="show"
+		}
+		}
+</script> <!--选项卡切换Script模块-->
+</head>
+<body style="margin-left:60px;width:1620px;">
+	<div data-role="header" id="header" style="width:1610px; height:auto;background-image:url(./fig/fig1.png); width:1660px;height:200px;border:0px;">
+		<hr><h2><b>生信搜索及学习资源导航</b></h2><hr>
+		<div class="btn-toolbar" role="label">
+			<div class="btn-group mr-2" role="group">
+	        	<!--
+				<button type="button" class="btn btn-secondary" onClick="CF()">辣眼风格</button> -->
+				<button type="button" class="btn btn-secondary" onClick="NC()">简约风格</button>
+				<button type="button" class="btn btn-secondary" onClick="window.location.href ='./index.html'">0.0</button>
+	        	<button type="button" class="btn btn-info" onClick="openurl('mailto:caoshang1@shanghaitech.edu.cn')">联系我们</button>
+				<!--
+				<button type="button" class="btn btn-info" onClick="openurl('https://jq.qq.com/?_wv=1027&k=rsjIG4mo')">加入社区</button>
+				-->
+				<button type="button" class="btn btn-light" onClick="openurl('https://zhuanlan.zhihu.com/p/158597613')">About</button>
+			</div>
+			<div class="btn-group mr-2" role="group">
+			 <button type="button" class="btn btn-info" >生物信息学</button>
+	         <!--
+			 <button type="button" class="btn btn-info" >计算生物学</button>
+	         <button type="button" class="btn btn-info" >生物医药</button>
+	         <button type="button" class="btn btn-info" >药物研发</button>
+	         <button type="button" class="btn btn-info" >结构生物学</button>
+	         <button type="button" class="btn btn-info" >合成生物学</button>
+			 -->
+			</div>
+		</div><!--网页头部基本选项卡+可切换选项卡-->
+	</div><!--网页头部-->
+	<div class="search" style="width:1610px;margin-bottom:30px;height:auto;">
+		<input name="textinput" type="text" id="textinput" placeholder="在此输入英文关键词，点击下方左侧图标搜索" size="70" maxlength="9000" height="30" hspace="4000" style="border:2px solid #378888"/>
+	</div><!--搜索关键词输入框-->
+<table id="main" width="1660" border="0" cellpadding="50">
+<div class = "leftContext" data-role="content" style="width:700px; height:auto; float:left; display:inline">
+<div><b>
+<h3>生信数据库搜索</h3>
+	<p>学术出版物、资源与学术名词查询</p>
+	<ol>
+	<img src="./logo/Pubmed.png" width="120" height="45" alt="" title="NCBI文献数据库" onClick="search('https://www.ncbi.nlm.nih.gov/pubmed/?term=',' ')"/>
+	<img src="logo/Wikipedia.png" width="120" height="45" alt="" title="维基百科，可以查阅名词" onClick="search('https://en.wikipedia.org/wiki/',' ')"/>
+	<img src="logo/GoogleScholar.png" width="120" height="45" alt="" title="谷歌学术" onClick="search('https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=','&btnG=')"/>
+	<!--
+	<img src="logo/Gen-lib.png" width="120" height="45" alt="" title="专业专著电子书网站" onClick="search('http://gen.lib.rus.ec/search.php?lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def&req=',' ')"/>
+	-->
+	<img src="logo/BioRxiv.png" width="120" height="45" alt="" title="生物医学预印本网站" onClick="search('https://www.biorxiv.org/search/','')"/>
+	</ol><hr>
+	<p>测序、探针数据库</p>
+	<ol>
+	<img src="./logo/GEO.png" width="120" height="45" alt="" title="GEO数据库：输入GSE编号" onClick="search('https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=',' ')"/>
+	<img src="logo/geneCards.png" width="120" height="45" alt="" title="GeneCards数据库：输入基因名" onClick="search('https://www.genecards.org/Search/Keyword?queryString=',' ')"/>
+	<img src="logo/ArrayExpress.png" width="120" height="45" alt="" title="ArrayExpress表达探针数据库" onClick="search('https://www.ebi.ac.uk/arrayexpress/search.html?query=',' ')"/>
+	<img src="logo/singleCellPortal.png" width="120" height="45" alt="" title="药理学数据库" onClick="search('https://singlecell.broadinstitute.org/single_cell?type=study&page=1&terms=',' ')"/>
+	</ol><hr>
+	<p>蛋白数据库</p>
+	<ol>
+	<img src="./logo/UniProt.png" width="120" height="45" alt="" title="最常用的蛋白质数据库" onClick="search('https://www.uniprot.org/uniprot/?sort=score&query=',' ')"/>
+	<img src="logo/PDB.png" width="120" height="45" alt="" title="RCSB PDB，目前蛋白质结构数据库中最好用的一个" onClick="search('http://www.rcsb.org/search?query=%7B%22parameters%22%3A%7B%22value%22%3A%22','%22%7D%7D')"/>
+	<img src="logo/CellMarker.png" width="120" height="45" alt="" title="细胞标志物CellMarker：输入蛋白名" onClick="search('http://biocc.hrbmu.edu.cn/CellMarker/search.jsp?quickSearchInfo=',' ')"/>
+	<!--
+	<img src="logo/Pfam.png" width="120" height="45" alt="" title="经典蛋白质家族与Domain信息数据库" onClick="search('http://pfam.xfam.org/search/keyword?query=',' ')"/>
+	-->
+	<img src="logo/InterPro.png" width="120" height="45" alt="" title="最新蛋白质家族与Domain信息数据库" onClick="search('http://www.ebi.ac.uk/interpro/search/text/','/?page=1#table')"/>
+	</ol><hr>
+	<p>物种数据库</p>
+	<ol>
+	<img src="logo/proteinatlas.png" width="120" height="45" alt="" title="膜蛋白结构数据库" onClick="search('https://www.proteinatlas.org/search/query=',' ')"/>
+	<img src="logo/RGD.png" width="120" height="45" alt="" title="大鼠基因组数据库" onClick="openurl('https://rgd.mcw.edu/wg/portals/')"/>
+	<img src="logo/Clinvar.png" width="120" height="45" alt="" title="临床基因变异数据库" onClick="search('https://www.ncbi.nlm.nih.gov/clinvar/?term=','%5Bgene%5D')"/>
+	<!--
+	<img src="logo/Bgee.png" width="120" height="45" alt="" title="" onClick="search('https://bgee.org/?page=gene&query=',' ')"/>
+	-->
+	<img src="logo/mrgd.png" width="120" height="45" alt="" title="" onClick="search('http://www.mrgd.org/',' ')"/>
+	</ol><hr>
+	<p>酶与生物化学信息数据库</p>
+	<ol>		
+	<img src="logo/KEGG.png" width="120" height="45" alt="" title="最经典代谢及通路数据库，通路图很精致" onClick="search('https://www.genome.jp/dbget-bin/www_bfind_sub?mode=bfind&max_hit=500&dbkey=kegg&keywords=',' ')"/>
+	<img src="logo/BRENDA.png" width="120" height="45" alt="" title="酶反应数据库" onClick="search('https://www.brenda-enzymes.org/fulltext.php?Searchterm=',' ')"/>
+	<img src="logo/HMDB.png" width="120" height="45" alt="" title="人类代谢数据库" onClick="search('https://hmdb.ca/unearth/q?utf8=%E2%9C%93&query=','&searcher=metabolites&button=')"/>
+	<img src="logo/Reactome.png" width="120" height="45" alt="" title="代谢通路数据库" onClick="search('https://reactome.org/content/query?q=','&species=Homo+sapiens&species=Entries+without+species&cluster=true')"/>
+	<!--
+	<img src="logo/CAZY.png" width="120" height="45" alt="" title="描述了具有碳水化合物催化活性的酶家族" onClick="search('http://www.cazy.org/search?page=recherche&recherche=','&tag=3')"/>
+	-->
+	</ol><hr>
+	</b></div>
+	<div style="float:left;display:inline;margin-right:40px;">
+	<div style="float:left;display:inline;margin-right:40px;">
+	<b><p>质谱数据库</p></b>
+	<ol>
+	<img src="logo/Proteome.png" width="120" height="45" alt="" title="蛋白质谱数据库" onClick="search('http://proteomecentral.proteomexchange.org/cgi/GetDataset',' ')"/>
+	<!--
+	<img src="logo/Clinvar.png" width="120" height="45" alt="" title="临床基因变异数据库" onClick="search('https://www.ncbi.nlm.nih.gov/clinvar/?term=','%5Bgene%5D')"/>
+	-->
+	</ol>
+	</div>
+	<!--
+	<div style="float:left;display:inline;margin-right:40px;"><p><b>小工具，欢迎提需求！</b></p>
+		<button type="button" title="PDBID之间用空格分隔，输入上方搜索框中，点此批量下载" onClick="pdbdownload()"><b>批量下载PDB</b></button><br>
+		<button type="button" title="将要查询的命令输入搜索框，点此查询" onClick="search('https://man.linuxde.net/','')"><b>Linux命令查询</b></button>
+	</div>
+	-->
+	<div style="float:left;display:inline;"><b><p>常用罕见字母</p>
+	<p>Å ö ξ ω ψ ϕ ζ </p></b></div>
+	</div>
+</div>
+<div style="margin-top: 1px;float:left;margin-left:10px;margin-right:50px;width:2px;height:700px;background:darkgray;display:inline;"></div>
+<div class="rightContext" style="width:800px; height:auto; float:left; display:inline;"><b>
+<h3>生信学习资源</h3>
+<p>基础知识教程</p><ol>
+	<img src="logo/GalaxyTraining1.png" width="120" height="45" alt="" title="Galaxy Training" onClick="openurl('https://training.galaxyproject.org/training-material/')"/>
+	<img src="logo/LuLabDocs.png" width="120" height="45" alt="" title="清华大学鲁志老师实验室学习资料" onClick="openurl('https://lulab.gitbook.io/docs/')"/>
+	<img src="logo/PH525.png" width="120" height="45" alt="" title="MIT生信PH525" onClick="openurl('http://genomicsclass.github.io/book/')"/>
+	<!--
+	<img src="logo/Weblogo.png" width="120" height="45" alt="" title="序列保守性可视化" onClick="openurl('http://weblogo.threeplusone.com/create.cgi')"/>
+	<img src="logo/Motif.png" width="120" height="45" alt="" title="搜索序列Motif" onClick="openurl('https://www.genome.jp/tools/motif/')"/>
+	-->
+</ol><hr><p>实战项目</p><ol>
+	<img src="logo/SangerInsitute.png" width="120" height="45" alt="" title="Sanger Institute" onClick="openurl('https://scrnaseq-course.cog.sanger.ac.uk/website/index.html')"/>
+	<img src="logo/broadInstitute.png" width="120" height="45" alt="" title="Broad Institute" onClick="openurl('https://broadinstitute.github.io/2019_scWorkshop/index.html')"/>
+	<img src="logo/bioinformatics_ca.png" width="120" height="45" alt="" title="加拿大生物信息中心" onClick="openurl('https://bioinformaticsdotca.github.io/')"/>
+	
+	<!--
+	<img src="logo/FTmap.png" width="120" height="45" alt="" title="经典的蛋白小分子结合位点预测" onClick="openurl('http://ftmap.bu.edu/login.php')"/>
+	<img src="logo/Prodigy.png" width="120" height="45" alt="" title="生物分子结合亲和力计算" onClick="openurl('https://bianca.science.uu.nl/prodigy/')"/>
+	-->
+</ol><hr><p>编程练习题</p><ol>
+	<img src="logo/Rosalind.png" width="120" height="45" alt="" title="Rosalind生信编程题目" onClick="openurl('http://rosalind.info/problems/locations/')"/>
+	<img src="logo/HarvardFAS.png" width="120" height="45" alt="" title="Harvard FAS" onClick="openurl('https://informatics.fas.harvard.edu/category/tutorials.html')"/>
+	<img src="logo/Bioconductor.png" width="120" height="45" alt="" title="Bioconductor" onClick="openurl('https://bioconductor.org/help/course-materials/')"/>
+	<!--
+	<img src="logo/PDB-download.png" width="120" height="45" title="PDB批量下载" alt="" onClick="openurl('http://www.rcsb.org/downloads')"/>
+	<img src="logo/RAST.png" width="120" height="45" alt="" title="细菌基因组注释工具" onClick="openurl('https://rast.nmpdr.org/')"/>
+	-->
+</ol><hr><p>统计学资源</p><ol>
+	<img src="logo/STHDA.png" width="120" height="45" alt="" title="学习统计学、可视化" onClick="openurl('http://www.sthda.com/english/')"/>
+	<!--
+	<img src="logo/I-TASSER.png" width="120" height="45" alt="" title="强大的组合同源建模及缺失片段补全工具" onClick="openurl('https://zhanglab.ccmb.med.umich.edu/I-TASSER/')"/>
+	<img src="logo/trRosetta.png" width="120" height="45" alt="" title="基于机器学习的从头建模" onClick="openurl('https://yanglab.nankai.edu.cn/trRosetta/help/')"/>
+	<img src="logo/RaptorX.png" width="120" height="45" alt="" title="基于机器学习的蛋白建模和Contact预测" onClick="openurl('http://raptorx.uchicago.edu/')"/>
+	<img src="logo/AWSEM.png" width="120" height="45" alt="" title="基于模拟的蛋白质折叠" onClick="openurl('https://awsem.rice.edu/')"/>
+	-->
+</ol><hr><p>可视化工具</p><ol>
+	<img src="logo/Hiplot.png" width="120" height="45" alt="" title="HIPLOT" onClick="openurl('https://hiplot.com.cn/')"/>
+	<img src="logo/BioRight.png" width="120" height="45" alt="" title="DrBioRight" onClick="openurl('https://drbioright.org/landing/')"/>
+	<img src="logo/venn.png" width="120" height="45" alt="" title="韦恩图" onClick="openurl('http://bioinformatics.psb.ugent.be/webtools/Venn/')"/>
+	<!--
+	<img src="logo/HPEPDOCK.png" width="120" height="45" alt="" title="快速蛋白-肽对接" onClick="openurl('http://huanglab.phys.hust.edu.cn/hpepdock/')"/>
+	<img src="logo/FlexPep.png" width="120" height="45" alt="" title="蛋白-肽柔性对接" onClick="openurl('http://flexpepdock.furmanlab.cs.huji.ac.il/')"/>
+	<img src="logo/PEPFold.png" width="120" height="45" alt="" title="多肽折叠预测及对接" onClick="openurl('https://mobyle.rpbs.univ-paris-diderot.fr/cgi-bin/portal.py#forms::PEP-FOLD3')"/>
+	-->
+</ol><hr><p>生信论坛</p><ol>
+	<img src="logo/Biostar.png" width="120" height="45" alt="" title="Biostar论坛" onClick="openurl('https://www.biostars.org/')"/>
+	<img src="logo/SEQanswers.png" width="120" height="45" alt="" title="SEQanswers" onClick="openurl('http://seqanswers.com/forums/')"/>
+	<img src="logo/biotrainee.png" width="120" height="45" alt="" title="生信技能树" onClick="openurl('http://biotrainee.com/forum.php/')"/>
+	<!--
+	<img src="logo/Pymol.png" width="120" height="45" alt="" title="Pymol指令集" onClick="openurl('https://pymol.org/pymol-command-ref.html')"/>
+	<img src="logo/GROMACs.png" width="120" height="45" alt="" title="Gromacs中文教程" onClick="openurl('https://jerkwin.github.io/9999/12/01/GROMACS%E7%A8%8B%E5%BA%8F%E6%96%87%E6%A1%A3/')"/>
+	<img src="logo/CCP4.png" width="120" height="45" alt="" title="CCP4 结构生物学常用解析软件" onClick="openurl('http://www.ccp4.ac.uk/docs.php')"/>
+	-->
+</ol>
+</b></div>
+</table><hr>
+<div id="contact-tab" style="width:auto;float:left;" class="show">
+	<div style="width:auto;height:auto;float:left;margin-right:50px;">
+		<p><b>一个小小的讨论群~</b></p>
+		<!--小小的调查问卷和
+		<img src="fig/Form.png" width="120" height="120" alt="" onClick="openurl('https://forms.office.com/Pages/ResponsePage.aspx?id=2WLNjzVAWUKKVc00_QV0QxaEu2jBsuFCnn2yNMZpnMFUNTBGVVhQRU5HTzVRWFJLOFFCNllTWTYwVS4u')" title="点一下就可以填写了，其实主要是让我知道还有人在用哈哈"/>
+		-->
+		<img src="fig/Bioinfo.png" width="120" height="120" alt="" onClick="openurl('https://jq.qq.com/?_wv=1027&k=rsjIG4mo')" title="一个小小的讨论群，点一下就可以啦~"/>
+	</div><!--问卷和QQ群-->
+	<div style="width:auto;height:auto;float:left;display:inline;"><b><ol>
+		<div  name="contact" id="contact">
+			<div><a> 感谢您的使用，如果您有任何关于本站的问题，欢迎随时联系我。</a></div>
+			<a href="mailto:caoshang1@shanghaitech.edu.cn"> Email: caoshang1@shanghaitech.edu.cn </a>
+			<p > </p>
+			<p > References: wanglin bio-db</p>
+		</div></ol></b>
+	</div><!--邮箱-->
+</div><!--网页尾部联系方式信息-->
+</body>
+</html>
+
+<!--
+		<div id="com-bio" class="show">
+			<div style="width:1610px; height:auto; float:left;">
+				<div style="width:805px; height:auto; float:left; display:inline;"></div>
+				<div style="width:805px; height:auto; float:left; display:inline;"></div>
+			</div>
+			<div style="width:1610px; height:auto;float:left;">
+				<h4><b>常用在线工具</b></h4>
+				<p>下列所有Server推荐均无利益相关，欢迎推荐其他优秀的工具！</p>
+				<div style="width:805px; height:auto; float:left; display:inline"></div>
+				<div style="width:805px; height:auto; float:left; display:inline"></div>
+				<div style="width:1610px; height:auto;float:left;"></div>
+			</div>
+var showcard=document.getElementById("cardcontent").getElementsByClassName("show")
+showcard.className="hide"
+
+				<img src="logo/Ensembi.png" width="120" height="45" alt="" title="图示化的动物基因组数据库" onClick="search('http://asia.ensembl.org/Multi/Search/Results?q=',';site=ensembl_all')"/>
+-->
+
+
+
+
